@@ -18,6 +18,12 @@ apt-get install halon-extras-avro
 yum install halon-extras-avro
 ```
 
+### Azure Linux
+
+```
+tdnf install -y halon-extras-avro
+```
+
 ## Exported functions
 
 These functions needs to be [imported](https://docs.halon.io/hsl/structures.html#import) from the `extras://avro` module path.
