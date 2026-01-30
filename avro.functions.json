@@ -1,0 +1,42 @@
+[
+    {
+        "name": "avro_encode",
+        "parameters": {
+            "required": [
+                {
+                    "name": "schema",
+                    "type": "string"
+                },
+                {
+                    "name": "data",
+                    "type": "any"
+                }
+            ]
+        },
+        "returnType": "string",
+        "detail": "avro_encode([string $schema, any $data]): string",
+        "value": "avro_encode($0, $1)",
+        "documentation": "avro encode data using schema.",
+        "link": "[Full documentation](https://github.com/halon-extras/avro)"
+    },
+    {
+        "name": "avro_decode",
+        "parameters": {
+            "required": [
+                {
+                    "name": "schema",
+                    "type": "string"
+                },
+                {
+                    "name": "avro",
+                    "type": "string"
+                }
+            ]
+        },
+        "returnType": "string",
+        "detail": "avro_decode([string $schema, string $avro]): any",
+        "value": "avro_decode($0, $1)",
+        "documentation": "avro decode data using schema.",
+        "link": "[Full documentation](https://github.com/halon-extras/avro)"
+    }
+]

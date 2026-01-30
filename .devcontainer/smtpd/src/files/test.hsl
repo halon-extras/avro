@@ -1,0 +1,7 @@
+import { avro_encode, avro_decode } from "extras://avro";
+
+import { avro_decode } from "extras://avro";
+$schema = ''{"type": "record", "name": "LoginEvent", "fields": [{"name": "Username", "type": "string"}]}'';
+$data = ["Username" => "batman"];
+$binary = avro_encode($schema, $data);
+echo avro_decode($schema, $binary);
