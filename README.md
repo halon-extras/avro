@@ -24,7 +24,7 @@ These functions needs to be [imported](https://docs.halon.io/hsl/structures.html
 
 ### avro_encode(schema, data)
 
-avro encode data (work with any data serializable to JSON).
+Encode data in binary arvo format according to the schema (works with any data serializable to JSON).
 
 **Params**
 
@@ -33,7 +33,7 @@ avro encode data (work with any data serializable to JSON).
 
 **Returns**
 
-On success it will return a string that contains the binary avro data. On error an exception will be thrown.
+On success it will return a string that contains the binary avro data according to the schema. On error an exception will be thrown.
 
 **Example**
 
@@ -46,7 +46,7 @@ $binary = avro_encode($schema, $data);
 
 ### avro_decode(schema, avro)
 
-avro decode data (work with any data serializable to JSON).
+Decode binary arvo data to an object type according to the schema (works with any data serializable to JSON).
 
 **Params**
 
@@ -55,7 +55,7 @@ avro decode data (work with any data serializable to JSON).
 
 **Returns**
 
-On success it will return a object that contains the decoded binary avro data. On error an exception will be thrown.
+On success it will return the object type from the decoded binary avro data according to the schema. On error an exception will be thrown.
 
 **Example**
 
