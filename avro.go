@@ -44,7 +44,7 @@ func GetArgumentAsJSON(args *C.HalonHSLArguments, pos uint64, required bool) (st
 		}
 	}
 	var y *C.char
-	z := C.HalonMTA_hsl_value_to_json(x, &y, nil)
+	z := C.HalonMTA_hsl_value_to_json2(x, &y, nil, C.HALONMTA_JSON_ENCODE_NO_ENSURE_ASCII)
 	defer C.free(unsafe.Pointer(y))
 	if z {
 		return C.GoString(y), nil
@@ -72,7 +72,7 @@ func SetReturnValueFromJson(ret *C.HalonHSLValue, json string) error {
 	y := C.CString(json)
 	defer C.free(unsafe.Pointer(y))
 	var z *C.char
-	if !(C.HalonMTA_hsl_value_from_json(ret, y, &z, nil)) {
+	if !(C.HalonMTA_hsl_value_from_json2(ret, y, &z, nil, C.HALONMTA_JSON_DECODE_UNICODE_BYTE)) {
 		if z != nil {
 			err := errors.New(C.GoString(z))
 			C.free(unsafe.Pointer(z))
