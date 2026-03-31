@@ -1,6 +1,6 @@
 module github.com/halon-extras/avro
 
-go 1.17
+go 1.26
 
 require (
 	github.com/golang/snappy v0.0.1 // indirect
