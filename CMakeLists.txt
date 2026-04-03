@@ -37,6 +37,11 @@ ADD_CUSTOM_TARGET(sbom ALL
 	WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
 )
 
+ADD_CUSTOM_TARGET(licenses ALL
+	COMMAND ${CMAKE_COMMAND} -E env GOPATH=${GOPATH} rm -rf "${CMAKE_CURRENT_BINARY_DIR}/licenses" && go-licenses save . --save_path="${CMAKE_CURRENT_BINARY_DIR}/licenses"
+	WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+)
+
 IF(EXISTS "/etc/os-release")
 	EXECUTE_PROCESS(COMMAND "sed" "-ne" "s/^ID=\"\\?\\([a-z]\\+\\)\"\\?$/\\1/p" "/etc/os-release" OUTPUT_VARIABLE OS_RELEASE_ID OUTPUT_STRIP_TRAILING_WHITESPACE)
 	EXECUTE_PROCESS(COMMAND "sed" "-ne" "s/^VERSION_ID=\"\\?\\([0-9\\.]\\+\\)\"\\?$/\\1/p" "/etc/os-release" OUTPUT_VARIABLE OS_RELEASE_VERSION_ID OUTPUT_STRIP_TRAILING_WHITESPACE)
@@ -58,16 +63,7 @@ ENDIF()
 INSTALL(FILES "${CMAKE_CURRENT_BINARY_DIR}/avro.so.link" DESTINATION plugins/autoload/smtpd RENAME avro.so)
 INSTALL(FILES "${CMAKE_CURRENT_BINARY_DIR}/avro.so.link" DESTINATION plugins/autoload/hsh RENAME avro.so)
 
-INSTALL(FILES "LICENSE" DESTINATION share/doc/plugins/avro)
-INSTALL(FILES "/licenses/LICENSE.go" DESTINATION share/doc/plugins/avro)
-INSTALL(FILES "/licenses/LICENSE.davecgh-go-spew" DESTINATION share/doc/plugins/avro)
-INSTALL(FILES "/licenses/LICENSE.golang-snappy" DESTINATION share/doc/plugins/avro)
-INSTALL(FILES "/licenses/LICENSE.linkedin-goavro" DESTINATION share/doc/plugins/avro)
-INSTALL(FILES "/licenses/LICENSE.pmezard-go-difflib" DESTINATION share/doc/plugins/avro)
-INSTALL(FILES "/licenses/LICENSE.stretchr-objx" DESTINATION share/doc/plugins/avro)
-INSTALL(FILES "/licenses/LICENSE.stretchr-testify" DESTINATION share/doc/plugins/avro)
-INSTALL(FILES "/licenses/LICENSE.go-check-check" DESTINATION share/doc/plugins/avro)
-INSTALL(FILES "/licenses/LICENSE.go-yaml-yaml" DESTINATION share/doc/plugins/avro)
+INSTALL(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/licenses" DESTINATION share/doc/plugins/${PROJECT_NAME})
 
 SET(CMAKE_INSTALL_PREFIX "/opt/halon")
 SET(CPACK_PACKAGING_INSTALL_PREFIX "/opt/halon")

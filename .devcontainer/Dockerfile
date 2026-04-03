@@ -41,34 +41,8 @@ echo "${SHA256} go1.26.1.${TARGETOS}-${TARGETARCH}.tar.gz" | sha256sum -c
 tar -C /usr/local -xzf go1.26.1.${TARGETOS}-${TARGETARCH}.tar.gz
 EOF
 RUN /usr/local/go/bin/go install github.com/CycloneDX/cyclonedx-gomod/cmd/cyclonedx-gomod@latest
+RUN /usr/local/go/bin/go install github.com/google/go-licenses/v2@latest
 ENV PATH="$PATH:/usr/local/go/bin:/root/go/bin"
-
-RUN mkdir /licenses
-RUN cp /usr/local/go/LICENSE /licenses/LICENSE.go
-RUN cd /tmp/halon \
-    && curl -O -L https://github.com/davecgh/go-spew/blob/master/LICENSE \
-    && cp LICENSE /licenses/LICENSE.davecgh-go-spew
-RUN cd /tmp/halon \
-    && curl -O -L https://raw.githubusercontent.com/golang/snappy/refs/heads/master/LICENSE \
-    && cp LICENSE /licenses/LICENSE.golang-snappy
-RUN cd /tmp/halon \
-    && curl -O -L https://raw.githubusercontent.com/linkedin/goavro/refs/heads/master/LICENSE \
-    && cp LICENSE /licenses/LICENSE.linkedin-goavro
-RUN cd /tmp/halon \
-    && curl -O -L https://raw.githubusercontent.com/pmezard/go-difflib/refs/heads/master/LICENSE \
-    && cp LICENSE /licenses/LICENSE.pmezard-go-difflib
-RUN cd /tmp/halon \
-    && curl -O -L https://raw.githubusercontent.com/stretchr/objx/refs/heads/master/LICENSE \
-    && cp LICENSE /licenses/LICENSE.stretchr-objx
-RUN cd /tmp/halon \
-    && curl -O -L https://raw.githubusercontent.com/stretchr/testify/refs/heads/master/LICENSE \
-    && cp LICENSE /licenses/LICENSE.stretchr-testify
-RUN cd /tmp/halon \
-    && curl -O -L https://raw.githubusercontent.com/go-check/check/refs/heads/v1/LICENSE \
-    && cp LICENSE /licenses/LICENSE.go-check-check
-RUN cd /tmp/halon \
-    && curl -O -L https://raw.githubusercontent.com/go-yaml/yaml/refs/tags/v3.0.1/LICENSE \
-    && cp LICENSE /licenses/LICENSE.go-yaml-yaml
 
 RUN rm -rf /tmp/halon
 
