@@ -3,6 +3,6 @@
 ```
 export HALON_REPO_USER=exampleuser
 export HALON_REPO_PASS=examplepass
-docker compose -p halon-extras-avro up --build
+docker compose -p halon-extras-avro --profile all up --build
 docker compose -p halon-extras-avro down --rmi local
 ```
